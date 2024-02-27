@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Group3_3_Mission8.Models;
@@ -11,7 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TaskDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+}, ServiceLifetime.Transient, ServiceLifetime.Transient);
 
 var app = builder.Build();
 
