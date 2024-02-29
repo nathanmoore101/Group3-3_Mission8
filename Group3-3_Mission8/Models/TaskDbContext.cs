@@ -7,7 +7,7 @@ namespace Group3_3_Mission8.Models
     {
         public TaskDbContext(DbContextOptions<TaskDbContext> options) : base(options) { }
 
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<TaskModel> Tasks { get; set; }
         public DbSet<Category> Categories { get; set; }
 
     }

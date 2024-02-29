@@ -6,7 +6,7 @@ using System;
 
 namespace Group3_3_Mission8.Models
 {
-    public class Task
+    public class TaskModel
 
     {
         public int Id { get; set; }
