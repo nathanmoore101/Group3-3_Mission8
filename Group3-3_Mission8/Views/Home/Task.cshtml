@@ -13,6 +13,9 @@
 <h2>@ViewData["Title"]</h2>
 
 <form asp-action="SaveTask" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
     <div class="form-group">
         <label asp-for="TaskName">Task</label>
         <input asp-for="TaskName" class="form-control"/>
@@ -28,10 +31,10 @@
     <div class="form-group">
         <label asp-for="Quadrant">Quadrant</label>
         <select asp-for="Category" class="form-control">
-            <option value="QuadrantI">Quadrant I</option>
-            <option value="QuadrantII">Quadrant II</option>
-            <option value="QuadrantIII">Quadrant III</option>
-            <option value="QuadrantIV">Quadrant IV</option>
+            <option value="1">Quadrant I</option>
+            <option value="2">Quadrant II</option>
+            <option value="3">Quadrant III</option>
+            <option value="4">Quadrant IV</option>
         </select>
         <span asp-validation-for="Quadrant" class="text-danger"></span>
     </div>
@@ -39,10 +42,11 @@
     <div class="form-group">
         <label asp-for="Category">Category</label>
         <select asp-for="Category" class="form-control">
-            <option value="Home">Home</option>
-            <option value="School">School</option>
-            <option value="Work">Work</option>
-            <option value="Church">Church</option>
+            <option value="">Select a Category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.Id">@c.Name</option>
+            }
         </select>
         <span asp-validation-for="Category" class="text-danger"></span>
     </div>

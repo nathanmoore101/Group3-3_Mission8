@@ -1,0 +1,72 @@
+﻿@model List<TaskModel>
+
+<div class="container mt-3">
+    <h2>Time Management Matrix</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="2"></th>
+                    <th colspan="2" class="text-center" style="font-weight: 600;">Urgent</th>
+                    <th colspan="2" class="text-center" style="font-weight: 600;">Not Urgent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-weight-bold text-center" colspan="2" style="font-weight: 600;">Important</td>
+                    <!-- Quadrant 1 -->
+                    <td colspan="2" style="height: 300px; overflow-y: auto;">
+                        <p style="font-weight: 600;">Quadrant 1</p>
+                        @foreach (var task in Model.Where(t => t.Quadrant == "1" && t.Completed == true))
+                        {
+                            <div>
+                                @task.TaskName
+                                <a type="button" class="btn btn-light btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id">Edit</a>
+                                <a type="button" class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                            </div>
+                        }
+                    </td>
+                    <!-- Quadrant 2 -->
+                    <td colspan="2" style="height: 300px; overflow-y: auto;">
+                        <p style="font-weight: 600;">Quadrant 2</p>
+                        @foreach (var task in Model.Where(t => t.Quadrant == "2" && t.Completed == true))
+                        {
+                            <div>
+                                @task.TaskName
+                                <a type="button" class="btn btn-light btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id">Edit</a>
+                                <a type="button" class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold text-center" colspan="2" style="font-weight: 600;">Not Important</td>
+                    <!-- Quadrant 3 -->
+                    <td colspan="2" style="height: 300px; overflow-y: auto;">
+                        <p style="font-weight: 600;">Quadrant 3</p>
+                        @foreach (var task in Model.Where(t => t.Quadrant == "3" && t.Completed == true))
+                        {
+                            <div>
+                                @task.TaskName
+                                <a type="button" class="btn btn-light btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id">Edit</a>
+                                <a type="button" class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                            </div>
+                        }
+                    </td>
+                    <!-- Quadrant 4 -->
+                    <td colspan="2" style="height: 300px; overflow-y: auto;">
+                        <p style="font-weight: 600;">Quadrant 4</p>
+                        @foreach (var task in Model.Where(t => t.Quadrant == "4" && t.Completed == true))
+                        {
+                            <div>
+                                @task.TaskName
+                                <a type="button" class="btn btn-light btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id">Edit</a>
+                                <a type="button" class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
