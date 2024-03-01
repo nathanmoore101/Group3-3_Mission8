@@ -17,7 +17,11 @@ namespace Group3_3_Mission8.Controllers
             _context = temp;
 
         }
+        public IActionResult Index()
+        {
 
+            return View();
+        }
         public IActionResult Task()
         {
             ViewBag.Categories = _context.Categories
@@ -34,7 +38,7 @@ namespace Group3_3_Mission8.Controllers
             {
                 _context.Tasks.Add(taskModel);
                 _context.SaveChanges();
-                return View("Quadrants", taskModel);
+                return View("Submit", taskModel);
             }
             else
             {
@@ -47,10 +51,9 @@ namespace Group3_3_Mission8.Controllers
 
         }
   
-        public IActionResult Quadrants()
+        public IActionResult TaskModel()
         {
             var task = _context.Tasks
-
                 .OrderBy(x => x.TaskName).ToList();
 
             return View(task);
@@ -65,7 +68,7 @@ namespace Group3_3_Mission8.Controllers
             ViewBag.Categories = _context.Categories
               .OrderBy(x => x.Name)
               .ToList();
-            return View("Tasks", recordToEdit);
+            return View("Task", recordToEdit);
         }
 
         [HttpPost]
@@ -74,7 +77,7 @@ namespace Group3_3_Mission8.Controllers
             _context.Update(updatedInfo);
             _context.SaveChanges();
 
-            return RedirectToAction("Quadrants");
+            return RedirectToAction("TaskModel");
         }
 
         [HttpGet]
@@ -82,6 +85,8 @@ namespace Group3_3_Mission8.Controllers
         {
             var recordToDelete = _context.Tasks
                 .Single(x => x.Id == id);
+            ViewBag.Categories = _context.Tasks
+                .ToList();
 
             return View(recordToDelete);
         }
@@ -91,7 +96,7 @@ namespace Group3_3_Mission8.Controllers
         {
             _context.Tasks.Remove(task);
             _context.SaveChanges();
-            return RedirectToAction("Quadrants");
+            return RedirectToAction("TaskModel");
         }
 
     }
