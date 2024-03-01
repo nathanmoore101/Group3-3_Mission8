@@ -49,11 +49,9 @@ namespace Group3_3_Mission8.Controllers
   
         public IActionResult Quadrants()
         {
-            var task = _context.Tasks
+        
 
-                .OrderBy(x => x.TaskName).ToList();
-
-            return View(task);
+            return View();
         }
 
         [HttpGet]
