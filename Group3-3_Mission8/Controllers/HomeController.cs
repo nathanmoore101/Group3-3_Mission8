@@ -2,13 +2,17 @@ using Group3_3_Mission8.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
+using TaskModel = Group3_3_Mission8.Models.TaskModel;
+
+// Your controller code here
+
 
 namespace Group3_3_Mission8.Controllers
 {
     public class HomeController : Controller
     {
         private TaskDbContext _context;
-        public HomeController (TaskDbContext temp)
+        public HomeController(TaskDbContext temp)
         {
             _context = temp;
 
@@ -24,13 +28,13 @@ namespace Group3_3_Mission8.Controllers
         }
 
         [HttpPost]
-        public IActionResult Task(TaskModel response)
+        public IActionResult Task(TaskModel taskModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Tasks.Add(response);
+                _context.Tasks.Add(taskModel);
                 _context.SaveChanges();
-                return View("Quadrants", response);
+                return View("Quadrants", taskModel);
             }
             else
             {
@@ -38,7 +42,7 @@ namespace Group3_3_Mission8.Controllers
                     .OrderBy(x => x.Name)
                     .ToList();
 
-                return View(response);
+                return View(taskModel);
             }
 
         }
