@@ -31,6 +31,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Task}/{id?}");
+    pattern: "{controller=Home}/{action=TaskView}/{id?}");
 
 app.Run();
