@@ -9,8 +9,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<TaskDbContext>(options =>
 {
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-}, ServiceLifetime.Transient, ServiceLifetime.Transient);
+    options.UseSqlite(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+});
+
+builder.Services.AddScoped<IDataRepo, EFDataRepo>();
 
 var app = builder.Build();
 

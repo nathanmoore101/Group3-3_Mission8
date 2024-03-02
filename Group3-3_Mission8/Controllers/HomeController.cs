@@ -11,39 +11,22 @@ namespace Group3_3_Mission8.Controllers
 {
     public class HomeController : Controller
     {
-        private TaskDbContext _context;
-        public HomeController(TaskDbContext temp)
+        private IDataRepo _repo;
+        public HomeController(IDataRepo repo)
         {
-            _context = temp;
-
+            _repo = repo;
         }
 
-        public IActionResult Task()
+        public IActionResult TaskView()
         {
-            ViewBag.Categories = _context.Categories
-                .OrderBy(x => x.Name)
-                .ToList();
-
-            return View("Task", new TaskModel());
+            return View(new TaskModel());
         }
 
         [HttpPost]
-        public IActionResult Task(TaskModel taskModel)
+        public IActionResult TaskView(TaskModel task)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Tasks.Add(taskModel);
-                _context.SaveChanges();
-                return View("Quadrants", taskModel);
-            }
-            else
-            {
-                ViewBag.Categories = _context.Categories
-                    .OrderBy(x => x.Name)
-                    .ToList();
-
-                return View(taskModel);
-            }
+            _repo.AddTask(task);
+            return RedirectToAction("QuadrantView");
 
         }
   
