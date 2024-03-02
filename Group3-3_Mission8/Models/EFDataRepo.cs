@@ -36,6 +36,11 @@
             return _context.Tasks.ToList();
         }
 
+        public List<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
+        }
+
 
         public void ChangeCompletion(int Id)
         {

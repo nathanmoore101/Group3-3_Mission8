@@ -12,6 +12,8 @@
         List<TaskModel> GetTasks();
         public void ChangeCompletion(int Id);
 
+        List<Category> GetCategories();
+
 
     }
 }

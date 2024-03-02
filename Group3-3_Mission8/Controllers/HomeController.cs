@@ -1,5 +1,6 @@
 using Group3_3_Mission8.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 using TaskModel = Group3_3_Mission8.Models.TaskModel;
@@ -19,13 +20,14 @@ namespace Group3_3_Mission8.Controllers
 
         public IActionResult TaskView()
         {
+            ViewBag.Categories = _repo.GetCategories();
+
             return View(new TaskModel());
         }
 
         [HttpPost]
         public IActionResult TaskView(TaskModel task)
         {
-            if (ModelState.IsValid)
             {
                 _repo.AddTask(task);
             }
