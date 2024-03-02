@@ -32,8 +32,7 @@ namespace Group3_3_Mission8.Controllers
           
             return View(new TaskModel());
 
-        }
-  
+
         public IActionResult Quadrants()
         {
             return View();
