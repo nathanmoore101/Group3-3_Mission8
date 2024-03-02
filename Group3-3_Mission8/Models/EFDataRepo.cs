@@ -15,7 +15,7 @@
           _context.SaveChanges();
         }
 
-        public void DeleteTask(TaskModel task)
+        public void RemoveTask(TaskModel task)
         {
             _context.Remove(task);
             _context.SaveChanges();
