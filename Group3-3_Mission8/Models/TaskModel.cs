@@ -17,8 +17,10 @@ namespace Group3_3_Mission8.Models
 
         public DateTime? DueDate { get; set; }
 
+
         [Required(ErrorMessage = "Quadrant is required.")]
         public string Quadrant { get; set; }
+
 
         public Category? Category { get; set; }
 
