@@ -1,5 +1,7 @@
-﻿
-namespace Group3_3_Mission8.Models
+
+
+﻿namespace Group3_3_Mission8.Models
+
 {
     public class EFDataRepo : IDataRepo
     {
@@ -14,6 +16,7 @@ namespace Group3_3_Mission8.Models
         {
             _context.Add(task);
             _context.SaveChanges();
+
         }
 
         public void RemoveTask(TaskModel task)
