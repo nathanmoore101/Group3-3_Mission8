@@ -48,13 +48,15 @@
 
     <div class="form-group">
         <label asp-for="Category">Category</label>
-        <select asp-for="Category" class="form-control">
-            <option value="Home">Home</option>
-            <option value="School">School</option>
-            <option value="Work">Work</option>
-            <option value="Church">Church</option>
+
+        <select asp-for="CategoryId" required class="form-control">
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.Name</option>
+            }
         </select>
-        <span asp-validation-for="Category" class="text-danger"></span>
+
+        <!--<span asp-validation-for="Category" class="text-danger"></span>-->
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>

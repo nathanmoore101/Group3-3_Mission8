@@ -11,6 +11,7 @@
             _context = temp;
         }
         public List<TaskModel> Tasks => _context.Tasks.ToList();
+        public List<Category> Categories => _context.Categories.ToList();
 
         public void AddTask(TaskModel task)
         {
@@ -34,6 +35,11 @@
         public List<TaskModel> GetTasks()
         {
             return _context.Tasks.ToList();
+        }
+
+        public List<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
         }
 
 
