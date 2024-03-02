@@ -8,7 +8,7 @@ namespace Group3_3_Mission8.Models
     {
         [Key]
         [Required]
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string? Name { get; set; }
     }
 }

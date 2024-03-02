@@ -22,7 +22,7 @@ namespace Group3_3_Mission8.Controllers
         {
             ViewBag.Categories = _repo.GetCategories();
 
-            return View(new TaskModel());
+            return View();
         }
 
         [HttpPost]
