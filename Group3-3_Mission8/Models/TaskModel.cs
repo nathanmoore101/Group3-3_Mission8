@@ -12,13 +12,15 @@ namespace Group3_3_Mission8.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Task is required.")]
         public string TaskName { get; set; }
 
         public DateTime? DueDate { get; set; }
 
-    
-        public string? Quadrant { get; set; }
+
+        [Required(ErrorMessage = "Quadrant is required.")]
+        public string Quadrant { get; set; }
+
 
         public Category? Category { get; set; }
 
