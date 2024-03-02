@@ -48,15 +48,8 @@
 
     <div class="form-group">
         <label asp-for="Category">Category</label>
-        <!--<select asp-for="Category" class="form-control">
-            <option value="0">Home</option>
-            <option value="1">School</option>
-            <option value="2">Work</option>
-            <option value="3">Church</option>
-        </select>-->
+
         <select asp-for="CategoryId" required class="form-control">
-            <option value="">-- Select Category --</option>
-            <option value="5">-- Wrong Category --</option>
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryId">@c.Name</option>

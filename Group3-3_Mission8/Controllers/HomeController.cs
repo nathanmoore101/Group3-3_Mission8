@@ -22,7 +22,7 @@ namespace Group3_3_Mission8.Controllers
         {
             ViewBag.Categories = _repo.GetCategories();
 
-            return View();
+            return View(new TaskModel());
         }
 
         [HttpPost]
@@ -46,6 +46,8 @@ namespace Group3_3_Mission8.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            ViewBag.Categories = _repo.GetCategories();
+            
             var recordToEdit = _repo.GetTasks()
                 .Single(x => x.Id == id);
 
