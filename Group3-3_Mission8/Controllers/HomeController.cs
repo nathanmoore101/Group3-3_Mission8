@@ -30,7 +30,7 @@ namespace Group3_3_Mission8.Controllers
                 _repo.AddTask(task);
             }
 
-            return View(new TaskModel());
+            return View("Submit");
 
         }
 
