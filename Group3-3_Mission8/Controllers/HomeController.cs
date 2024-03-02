@@ -11,88 +11,71 @@ namespace Group3_3_Mission8.Controllers
 {
     public class HomeController : Controller
     {
-        private TaskDbContext _context;
-        public HomeController(TaskDbContext temp)
+        private IDataRepo _repo;
+        public HomeController(IDataRepo repo)
         {
-            _context = temp;
-
+            _repo = repo;
         }
 
-        public IActionResult Task()
+        public IActionResult TaskView()
         {
-            ViewBag.Categories = _context.Categories
-                .OrderBy(x => x.Name)
-                .ToList();
-
-            return View("Task", new TaskModel());
+            return View(new TaskModel());
         }
 
         [HttpPost]
-        public IActionResult Task(TaskModel taskModel)
+        public IActionResult TaskView(TaskModel task)
         {
             if (ModelState.IsValid)
             {
-                _context.Tasks.Add(taskModel);
-                _context.SaveChanges();
-                return View("Quadrants", taskModel);
+                _repo.AddTask(task);
             }
-            else
-            {
-                ViewBag.Categories = _context.Categories
-                    .OrderBy(x => x.Name)
-                    .ToList();
 
-                return View(taskModel);
-            }
+            return View(new TaskModel());
 
         }
-  
+
         public IActionResult Quadrants()
         {
-            var task = _context.Tasks
-
-                .OrderBy(x => x.TaskName).ToList();
-
-            return View(task);
+            return View();
         }
 
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            var recordToEdit = _context.Tasks
-                .Single(x => x.Id == id);
+        //[HttpGet]
+        //public IActionResult Edit(int id)
+        //{
+        //    var recordToEdit = _context.Tasks
+        //        .Single(x => x.Id == id);
 
-            ViewBag.Categories = _context.Categories
-              .OrderBy(x => x.Name)
-              .ToList();
-            return View("Tasks", recordToEdit);
-        }
+        //    ViewBag.Categories = _context.Categories
+        //      .OrderBy(x => x.Name)
+        //      .ToList();
+        //    return View("Tasks", recordToEdit);
+        //}
 
-        [HttpPost]
-        public IActionResult Edit(TaskModel updatedInfo)
-        {
-            _context.Update(updatedInfo);
-            _context.SaveChanges();
+        //[HttpPost]
+        //public IActionResult Edit(TaskModel updatedInfo)
+        //{
+        //    _context.Update(updatedInfo);
+        //    _context.SaveChanges();
 
-            return RedirectToAction("Quadrants");
-        }
+        //    return RedirectToAction("Quadrants");
+        //}
 
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            var recordToDelete = _context.Tasks
-                .Single(x => x.Id == id);
+        //[HttpGet]
+        //public IActionResult Delete(int id)
+        //{
+        //    var recordToDelete = _context.Tasks
+        //        .Single(x => x.Id == id);
 
-            return View(recordToDelete);
-        }
+        //    return View(recordToDelete);
+        //}
 
-        [HttpPost]
-        public IActionResult Delete(TaskModel task)
-        {
-            _context.Tasks.Remove(task);
-            _context.SaveChanges();
-            return RedirectToAction("Quadrants");
-        }
+        //[HttpPost]
+        //public IActionResult Delete(TaskModel task)
+        //{
+        //    _context.Tasks.Remove(task);
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Quadrants");
+        //}
 
     }
 }
