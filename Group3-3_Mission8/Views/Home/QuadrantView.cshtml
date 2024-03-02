@@ -1,9 +1,84 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model List<TaskModel>
 
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-3">
+    <h2>Time Management Matrix</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="2"></th>
+                    <th colspan="2" class="text-center" style="font-weight: 600;">Urgent</th>
+                    <th colspan="2" class="text-center" style="font-weight: 600;">Not Urgent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-weight-bold text-center" colspan="2" style="font-weight: 600;">Important</td>
+                    <!-- Quadrant 1 -->
+                    <td colspan="2" style="height: 300px; overflow-y: auto;">
+                        <p class="text-center" style="font-weight: 800;">Quadrant 1</p>
+                        @foreach (var task in Model.Where(t => t.Quadrant == "1" && t.Completed == false))
+                        {
+                            <h5 class="card-title">@task.TaskName</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Due: @task.DueDate</h6>
+                            <form method="post" action="@Url.Action("Completion", "Home")" class="d-inline">
+                                <input type="hidden" name="Id" value="@task.Id" />
+                                <button type="submit" class="btn btn-success btn-sm">✔</button>
+                            </form>
+                            <a class="btn btn-light btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id">edit</a>
+                            <a class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id">delete</a>
+                        }
+                    </td>
+                    <!-- Quadrant 2 -->
+                    <td colspan="2" style="height: 300px; overflow-y: auto;">
+                        <p class="text-center" style="font-weight: 800;">Quadrant 2</p>
+                        @foreach (var task in Model.Where(t => t.Quadrant == "2" && t.Completed == false))
+                        {
+                            <h5 class="card-title">@task.TaskName</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Due: @task.DueDate</h6>
+                            <form method="post" action="@Url.Action("Completion", "Home")" class="d-inline">
+                                <input type="hidden" name="Id" value="@task.Id" />
+                                <button type="submit" class="btn btn-success btn-sm">✔</button>
+                            </form>
+                            <a class="btn btn-light btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id">edit</a>
+                            <a class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id">delete</a>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold text-center" colspan="2" style="font-weight: 600;">Not Important</td>
+                    <!-- Quadrant 3 -->
+                    <td colspan="2" style="height: 300px; overflow-y: auto;">
+                        <p class="text-center" style="font-weight: 800;">Quadrant 3</p>
+                        @foreach (var task in Model.Where(t => t.Quadrant == "3" && t.Completed == false))
+                        {
+                            <h5 class="card-title">@task.TaskName</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Due: @task.DueDate</h6>
+                            <form method="post" action="@Url.Action("Completion", "Home")" class="d-inline">
+                                <input type="hidden" name="Id" value="@task.Id" />
+                                <button type="submit" class="btn btn-success btn-sm">✔</button>
+                            </form>
+                            <a class="btn btn-light btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id">edit</a>
+                            <a class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id">delete</a>
+                        }
+                    </td>
+                    <!-- Quadrant 4 -->
+                    <td colspan="2" style="height: 300px; overflow-y: auto;">
+                        <p class="text-center" style="font-weight: 800;">Quadrant 4</p>
+                        @foreach (var task in Model.Where(t => t.Quadrant == "4" && t.Completed == false))
+                        {
+                            <h5 class="card-title">@task.TaskName</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Due: @task.DueDate</h6>
+                            <form method="post" action="@Url.Action("Completion", "Home")" class="d-inline">
+                                <input type="hidden" name="Id" value="@task.Id" />
+                                <button type="submit" class="btn btn-success btn-sm">✔</button>
+                            </form>
+                            <a class="btn btn-light btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id">edit</a>
+                            <a class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id">delete</a>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

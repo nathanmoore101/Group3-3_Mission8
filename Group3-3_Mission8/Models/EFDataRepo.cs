@@ -24,5 +24,27 @@
             _context.Remove(task);
             _context.SaveChanges();
         }
+
+        public void UpdateTask(TaskModel task)
+        {
+            _context.Update(task);
+            _context.SaveChanges();
+        }
+
+        public List<TaskModel> GetTasks()
+        {
+            return _context.Tasks.ToList();
+        }
+
+
+        public void ChangeCompletion(int Id)
+        {
+            var task = _context.Tasks.FirstOrDefault(t => t.Id == Id);
+            if (task != null)
+            {
+                task.Completed = task.Completed == false ? true : false;
+                _context.SaveChanges();
+            }
+        }
     }
 }

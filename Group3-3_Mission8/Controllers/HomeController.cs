@@ -33,51 +33,54 @@ namespace Group3_3_Mission8.Controllers
             return View(new TaskModel());
 
         }
-        public IActionResult QuadrantView() 
+
+        public IActionResult QuadrantView()
         {
-            return View();
+            var tasks = _repo.GetTasks();
+
+            return View(tasks);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordToEdit = _repo.GetTasks()
+                .Single(x => x.Id == id);
+
+            return View("TaskView", recordToEdit);
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(TaskModel task)
+        {
+            _repo.UpdateTask(task);
+            return RedirectToAction("QuadrantView");
+        }
+
+        [HttpPost]
+        public IActionResult Completion(int id)
+        {
+            _repo.ChangeCompletion(id);
 
 
-            //[HttpGet]
-            //public IActionResult Edit(int id)
-            //{
-            //    var recordToEdit = _context.Tasks
-            //        .Single(x => x.Id == id);
+            return RedirectToAction("QuadrantView");
 
-            //    ViewBag.Categories = _context.Categories
-            //      .OrderBy(x => x.Name)
-            //      .ToList();
-            //    return View("Tasks", recordToEdit);
-            //}
+        }
 
-            //[HttpPost]
-            //public IActionResult Edit(TaskModel updatedInfo)
-            //{
-            //    _context.Update(updatedInfo);
-            //    _context.SaveChanges();
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _repo.GetTasks()
+                .Single(x => x.Id == id);
+            return View(recordToDelete);
+        }
 
-            //    return RedirectToAction("Quadrants");
-            //}
-
-            //[HttpGet]
-            //public IActionResult Delete(int id)
-            //{
-            //    var recordToDelete = _context.Tasks
-            //        .Single(x => x.Id == id);
-
-            //    return View(recordToDelete);
-            //}
-
-            //[HttpPost]
-            //public IActionResult Delete(TaskModel task)
-            //{
-            //    _context.Tasks.Remove(task);
-            //    _context.SaveChanges();
-            //    return RedirectToAction("Quadrants");
-            //}
-
-        
+        [HttpPost]
+        public IActionResult Delete(TaskModel task)
+        {
+            _repo.RemoveTask(task);
+            return RedirectToAction("QuadrantView");
+        }
     }
 }
