@@ -5,7 +5,7 @@
 {
     public class EFDataRepo : IDataRepo
     {
-        private TaskDbContext _context
+        private TaskDbContext _context;
         public EFDataRepo(TaskDbContext temp) 
         { 
             _context = temp;

@@ -29,52 +29,55 @@ namespace Group3_3_Mission8.Controllers
             {
                 _repo.AddTask(task);
             }
-          
+
             return View(new TaskModel());
 
-
-        public IActionResult Quadrants()
+        }
+        public IActionResult QuadrantView() 
         {
             return View();
         }
 
-        //[HttpGet]
-        //public IActionResult Edit(int id)
-        //{
-        //    var recordToEdit = _context.Tasks
-        //        .Single(x => x.Id == id);
 
-        //    ViewBag.Categories = _context.Categories
-        //      .OrderBy(x => x.Name)
-        //      .ToList();
-        //    return View("Tasks", recordToEdit);
-        //}
 
-        //[HttpPost]
-        //public IActionResult Edit(TaskModel updatedInfo)
-        //{
-        //    _context.Update(updatedInfo);
-        //    _context.SaveChanges();
+            //[HttpGet]
+            //public IActionResult Edit(int id)
+            //{
+            //    var recordToEdit = _context.Tasks
+            //        .Single(x => x.Id == id);
 
-        //    return RedirectToAction("Quadrants");
-        //}
+            //    ViewBag.Categories = _context.Categories
+            //      .OrderBy(x => x.Name)
+            //      .ToList();
+            //    return View("Tasks", recordToEdit);
+            //}
 
-        //[HttpGet]
-        //public IActionResult Delete(int id)
-        //{
-        //    var recordToDelete = _context.Tasks
-        //        .Single(x => x.Id == id);
+            //[HttpPost]
+            //public IActionResult Edit(TaskModel updatedInfo)
+            //{
+            //    _context.Update(updatedInfo);
+            //    _context.SaveChanges();
 
-        //    return View(recordToDelete);
-        //}
+            //    return RedirectToAction("Quadrants");
+            //}
 
-        //[HttpPost]
-        //public IActionResult Delete(TaskModel task)
-        //{
-        //    _context.Tasks.Remove(task);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("Quadrants");
-        //}
+            //[HttpGet]
+            //public IActionResult Delete(int id)
+            //{
+            //    var recordToDelete = _context.Tasks
+            //        .Single(x => x.Id == id);
 
+            //    return View(recordToDelete);
+            //}
+
+            //[HttpPost]
+            //public IActionResult Delete(TaskModel task)
+            //{
+            //    _context.Tasks.Remove(task);
+            //    _context.SaveChanges();
+            //    return RedirectToAction("Quadrants");
+            //}
+
+        
     }
 }
